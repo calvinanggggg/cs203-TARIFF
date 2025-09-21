@@ -14,10 +14,10 @@ public class CorsConfig {
     var config = new CorsConfiguration();
     config.setAllowCredentials(true);
     config.setAllowedOrigins(List.of("http://localhost:5173"));
-    config.setAllowedHeaders(List.of("*"));
-    config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+    config.setAllowedHeaders(List.of("Content-Type", "Accept", "Authorization"));
+    config.setExposedHeaders(List.of("Authorization"));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
   }
 }
-
