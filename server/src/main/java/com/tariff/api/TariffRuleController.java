@@ -49,4 +49,14 @@ public class TariffRuleController {
 
         return ResponseEntity.ok(ApiResponse.success("Tariff rules retrieved", rules));
     }
+
+    @Operation(summary = "Get all tariff rules")
+    @GetMapping(value = "/all", produces = "application/json")
+    public ResponseEntity<ApiResponse<List<TariffRuleResponse>>> getAll() {
+        List<TariffRuleResponse> rules = service.getAll()
+                .stream()
+                .map(TariffRuleService::toResp)
+                .toList();
+        return ResponseEntity.ok(ApiResponse.success("All tariff rules retrieved", rules));
+    }
 }
