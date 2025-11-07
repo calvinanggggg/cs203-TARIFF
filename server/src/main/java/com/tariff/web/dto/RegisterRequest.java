@@ -1,8 +1,15 @@
 package com.tariff.web.dto;
 
+import jakarta.validation.constraints.*;
+
 public class RegisterRequest {
     private String username;
+    @NotBlank
+    @Email(message = "Invalid email format")
     private String email;
+    @NotBlank
+    @Size(min = 8, message = "{password.min}")
+    @Pattern(regexp = ".*\\d.*", message = "{password.digit}")
     private String password;
 
     public String getUsername() {

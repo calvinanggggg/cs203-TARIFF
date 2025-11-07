@@ -14,6 +14,9 @@ spring:
 
 server:
   port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
 
 # JWT Configuration
 app:
@@ -60,7 +63,7 @@ spring:
   datasource:
     url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
     username: postgres.xizwjutjdldhrthleubs
-    password: jY8MbHb4bg_hij!
+    password: CS203Tariff1234
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -70,12 +73,24 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     enabled: false  # Disable Flyway for now
+  mvc:
+    problemdetails:
+      enabled: true
+  messages:
+    basename: messages
 
 # JWT Configuration for Prod
 app:
   jwt:
     secret: ${JWT_SECRET:prodSecretKeyThatShouldBeStoredAsEnvironmentVariableInProduction}
     expiration: 86400000  # 24 hours
+
+    hikari:
+      maximum-pool-size: 10   # start small 
+      minimum-idle: 2
+      idle-timeout: 30000     # 30s
+      max-lifetime: 600000    # 10 min
+      connection-timeout: 20000 # 20s
 
 # ------------------------
 # Direct Profile (Alternative Supabase connection for IPv6 hosts)
