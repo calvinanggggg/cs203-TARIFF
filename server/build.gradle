@@ -9,7 +9,7 @@ plugins {
 flyway {
     url = 'jdbc:postgresql://db.xizwjutjdldhrthleubs.supabase.co:5432/postgres'
     user = 'postgres'
-    password = 'jY8MbHb4bg_hij!'
+    password = 
     schemas = ['public']
 }
 
